@@ -1,15 +1,19 @@
 import React, {Component} from "react";
 import TOC from "./components/TOC";
-import Content from "./components/Content";
+import ReadContent from "./components/ReadContent";
+import CreateContent from "./components/CreateContent";
+import UpdateContent from "./components/UpdateContent";
 import Subject from "./components/Subject";
+import Control from "./components/Control";
 import './App.css';
 
 
 class App extends Component {
     constructor(props) {
         super(props);
+        this.max_content_id = 3;
         this.state = {
-            mode: 'read',
+            mode: 'welcome',
             selected_content_id: 2,
             subject: {title: 'WEB', sub: 'World Wide Web!'},
             welcome: {title: 'Welcome', desc: 'Hello, React!!'},
@@ -21,25 +25,79 @@ class App extends Component {
         }
     }
 
-    render() {
-        console.log('App render');
-        let _title, _desc = null;
+    getReadContent() {
+        let i = 0;
+        while (i < this.state.contents.length) {
+            let data = this.state.contents[i];
+            if (data.id === this.state.selected_content_id) {
+                return data;
+                break;
+            }
+            i = i + 1;
+        }
+    }
+
+    getContent() {
+        let _title, _desc, _article = null;
         if (this.state.mode === 'welcome') {
             _title = this.state.welcome.title;
             _desc = this.state.welcome.desc;
+            _article = <ReadContent title={_title} desc={_desc}></ReadContent>;
         } else if (this.state.mode === 'read') {
-            let i = 0;
-            while (i < this.state.contents.length) {
-                let data = this.state.contents[i];
-                if (data.id === this.state.selected_content_id) {
-                    _title = data.title;
-                    _desc = data.desc;
-                    break;
-                }
-                i = i + 1;
-            }
+            let _content = this.getReadContent();
+            _article = <ReadContent title={_content.title} desc={_content.desc}></ReadContent>;
+        } else if (this.state.mode === 'create') {
+            _article = <CreateContent onSubmit={function (_title, _desc) {
+                // add content to this.state.contents
+                console.log(_title, _desc);
+                this.max_content_id = this.max_content_id + 1;
+                // this.state.contents.push(
+                //     {id: this.max_content_id, title: _title, desc: _desc}
+                // );
+                let newContents = Array.from(this.state.contents);
+                newContents.push(
+                    {id: this.max_content_id, title: _title, desc: _desc}
+                );
+
+                /*let _contents = this.state.contents.concat(
+                    {id: this.max_content_id, title: _title, desc: _desc}
+                );*/
+                this.setState({
+                    // contents: _contents
+                    contents: newContents,
+                    mode: 'read',
+                    selected_content_id: this.max_content_id,
+                });
+            }.bind(this)}></CreateContent>
+        } else if (this.state.mode === 'update') {
+            let _content = this.getReadContent();
+            _article = <UpdateContent data={_content} onSubmit={
+                function (_id, _title, _desc) {
+                    let _contents = Array.from(this.state.contents);
+
+                    let i = 0;
+                    while (i < _contents.length) {
+                        if (_contents[i].id === _id) {
+                            _contents[i] = {id: _id, title: _title, desc: _desc};
+                            break;
+                        }
+                        i = i + 1;
+                    }
+
+                    this.setState({
+                        contents: _contents,
+                        mode: 'read',
+                    });
+                }.bind(this)}></UpdateContent>
         }
+
         console.log('render', this); // 여기서 this는 컴포넌트 자신
+        return _article;
+    }
+
+    render() {
+        console.log('App render');
+
         return (
             <div className="App">
                 <Subject
@@ -77,7 +135,41 @@ class App extends Component {
                     }.bind(this)}
                     data={this.state.contents}
                 ></TOC>
-                <Content title={_title} desc={_desc}></Content>
+
+                <Control
+                    onChangeMode={function (_mode) {
+                        if (_mode === 'delete') {
+                            if (window.confirm('really??')) {
+                                let _contents = Array.from(this.state.contents);
+                                let i = 0;
+                                while (i < _contents.length) {
+                                    if (_contents[i].id === this.state.selected_content_id) {
+                                        _contents.splice(i, 1);
+                                        break;
+                                    }
+                                    i = i + 1;
+                                }
+
+                                this.setState({
+                                    mode: 'welcome',
+                                    contents: _contents,
+                                });
+
+                                alert('deleted!');
+                            }
+                        } else {
+                            this.setState({
+                                mode: _mode
+                            });
+                        }
+
+                    }.bind(this)}
+                ></Control>
+
+                {this.getContent()}
+                {/*{_article}*/}
+                {/*<ReadContent title={_title} desc={_desc}></ReadContent>*/}
+
             </div>
         );
     }
