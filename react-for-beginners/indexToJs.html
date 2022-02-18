@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+<body>
+<div id="root"></div>
+</body>
+
+<script crossorigin src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+<script type="text/babel">
+    const root = document.getElementById("root");
+    let counter = 0;
+    function countUp() {
+        counter = counter + 1;
+        render();
+    }
+
+    function render() {
+        // ReactDOM.render(<App />, root);
+    }
+    /*
+    const Title = () => (
+        <h3 id="title" onMouseEnter={() => console.log("mouseenter")}>
+            Hello I'm a title
+        </h3>
+    );
+    const Button = () => (
+        <button
+            style={{backgroundColor: "tomato"}}
+            onClick={() => console.log("click")}>
+            Click me
+        </button>
+    );
+    */
+    /*
+    const h3 = React.createElement(
+        "h3",
+        {
+            id: "title",
+            onMouseEnter: () => console.log("mouseenter"),
+        },
+        "Hello I'm a span");   // HTML tag, property(properties), content
+        */
+    /*
+    const btn = React.createElement(
+        "button",
+        {
+            onClick: () => console.log("clicked"),
+            style: {
+                backgroundColor: "tomato",
+            },
+        },
+        "Click me");
+        */
+    // const container = React.createElement("div", null, [Title, btn])
+    const App = () => (
+        <div>
+            <h3>Total clicks: {counter}</h3>
+            <button
+                onClick={ countUp }
+            >Click me</button>
+        </div>
+    );
+    // 컴포넌트의 첫 글자는 반드시 대문자여야 한다
+    // 소문자일 경우 React와 JSX는 HTML 태그라고 여긴다
+
+    ReactDOM.render(<Container />, root);
+    // render();
+
+    /*
+    * React의 장점
+    * 이벤트가 발생 될 경우 업데이트 되는 부분의 경우
+    * JavaScript에서는 body와 업데이트 되는 tag가 다시 렌더링 되는데
+    * React를 이용할 경우 업데이트 되는 컴포넌트(변수)만 렌더링 된다.
+    * */
+</script>
+
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<body>
+<div id="root"></div>
+</body>
+
+<script crossorigin src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+<script type="text/babel">
+    const root = document.getElementById("root");
+
+    const food = ["tomato", "potato"];
+    const [myFavFood, mySecondFavFood] = food;
+    // myFavFood = 'tomato' => food[0]
+    // mySecondFavFood = 'potato' => food[1]
+
+    function App() {
+        const data = React.useState(666);
+        console.log(data);
+        /*
+        * [undefined, ƒ]
+        * undefined => data
+        * ƒ => data를 바꿀 때 사용하는 함수
+        * */
+
+        return (<div>
+                <h3>Total clicks: { data[0] }</h3>
+                <button>Click me</button>
+            </div>
+        );
+    }
+
+    ReactDOM.render(<App/>, root);
+</script>
+
+</html>
