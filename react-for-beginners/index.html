@@ -17,8 +17,15 @@
     // mySecondFavFood = 'potato' => food[1]
 
     function App() {
-        const data = React.useState(666);
-        console.log(data);
+        // const data = React.useState(666);
+        const [counter, setCounter] = React.useState(0);
+        const onClick = () => {
+            // counter =  counter + 1;
+            // setCounter(counter + 1);     // 값을 받아 업데이트하고 리렌더링을 일으킨다
+            setCounter((current) => current + 1);
+        };
+
+
         /*
         * [undefined, ƒ]
         * undefined => data
@@ -26,8 +33,8 @@
         * */
 
         return (<div>
-                <h3>Total clicks: { data[0] }</h3>
-                <button>Click me</button>
+                <h3>Total clicks: {counter}</h3>
+                <button onClick={onClick}>Click me</button>
             </div>
         );
     }

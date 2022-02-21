@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<body>
+<div id="root"></div>
+</body>
+
+<script crossorigin src="https://unpkg.com/react@17.0.2/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/prop-types@15.7.2/prop-types.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+<script type="text/babel">
+
+    /*
+        function ConfirmBtn() {
+            return <button style={{
+                backgroundColor: "tomato",
+                color: "white",
+                padding: "10px 20px",
+                border: 0,
+                borderRadius: 10,
+            }}>Confirm</button>
+        }
+    */
+
+    // const MemorizedBtn = React.memo(Btn);
+
+    function Btn({text, fontSize = 13}) {
+        console.log(text);
+        return (
+            <button
+                style={{
+                    backgroundColor: "tomato",
+                    color: "white",
+                    padding: "10px 20px",
+                    border: 0,
+                    borderRadius: 10,
+                    fontSize: fontSize,
+                }}>
+                {text}
+            </button>
+        );
+    }
+
+    Btn.propTypes = {
+        text: PropTypes.string.isRequired,
+        fontSize: PropTypes.number,
+    };
+
+    function App() {
+/*
+        const [value, setValue] = React.useState("Save Changes");
+        const changeValue = () => {
+            setValue("Revert Changes");
+        };
+*/
+
+        return (
+            <div>
+                <Btn text="Save Changes" fontSize={18}/>
+                <Btn text="continue"/>
+            </div>
+        );
+    }
+
+    const root = document.getElementById("root");
+    ReactDOM.render(<App/>, root);
+
+
+    /*
+    prop는 인자를 사용해 컴포넌트에 데이터를 보내기 위한 통로일 뿐이다.
+    * */
+
+    /*
+    * prop-types
+    * PropTypes는 각기 다른 타입들을 검사하는 기능을 가지고 있다.
+    * console 창에서 에러를 확인할 수 있다.
+    * */
+
+</script>
+
+</html>
+
