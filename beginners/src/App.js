@@ -1,7 +1,159 @@
 import Button from "./Button";
 import styles from "./App.module.css";
 import {useState, useEffect} from "react";
-import {func} from "prop-types";
+import Movie from "./components/Movie";
+
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+} from "react-router-dom";
+import Home from "./routes/Home";
+import Detail from "./routes/Detail";
+
+function App() {
+    // router를 render 해야 한다
+    // router는 url을 보고 있는 컴포넌트이다
+
+    return <Router>
+        <Switch>
+            <Route path="/movie/:id">
+                <Detail/>
+            </Route>
+            <Route path="/">
+                <Home/>
+            </Route>
+        </Switch>
+    </Router>;
+
+    /*const [loading, setLoading] = useState(true);
+    const [movies, setMovies] = useState([]);
+
+    const getMovies = async () => {
+        const response = await fetch(`https://yts.mx/api/v2/list_movies.json?minimum_rating=9&sort_by=year`);
+        const json = await response.json();
+        setMovies(json.data.movies);
+        setLoading(false);
+    };
+
+    useEffect(() => {
+        getMovies();
+        /!*
+        fetch(`https://yts.mx/api/v2/list_movies.json?minimum_rating=9&sort_by=year`)
+            .then((response) => response.json())
+            .then((json) => {
+                setMovies(json.data.movies);
+                setLoading(false);
+            });
+        *!/
+    }, []);
+
+    return (
+        <div>
+            {
+                loading
+                    ?
+                    <h1>Loading...</h1>
+                    :
+                    <div>
+                        {movies.map((movie) => (
+                            <Movie
+                                key={movie.id}
+                                coverImg={movie.medium_cover_image}
+                                title={movie.title}
+                                summary={movie.summary}
+                                genres={movie.genres}
+                            />
+                        ))};
+                    </div>
+            }
+
+        </div>
+    );*/
+}
+
+export default App;
+
+
+function Coin() {
+    const [money, setMoney] = useState(0);
+    const [loading, setLoading] = useState(true);
+    const [coins, setCoins] = useState([]);
+
+    const onChange = (event) => {
+        setMoney(event.target.value);
+    };
+
+    useEffect(() => {
+        fetch(`https://api.coinpaprika.com/v1/tickers`)
+            .then((response) => response.json())
+            .then((json) => {
+                setCoins(json);
+                setLoading(false);
+            });
+    }, []);
+
+    return (
+        <div>
+            <h1>The Coins! {loading ? "" : `(${coins.length})`}</h1>
+
+            <input type="number" placeholder="Input your total money..." value={money} onChange={onChange}/>
+            <hr/>
+
+            {
+                loading ?
+                    (<strong>Lodaing...</strong>)
+                    :
+                    (<select>
+                        {coins.map((coin) => (
+                            <option key={coin.id}>
+                                {coin.name} ({coin.symbol}) : {coin.quotes.USD.price} USD /
+                                getItemCount: {Math.round(money / coin.quotes.USD.price)}
+                            </option>
+                        ))}
+                    </select>)
+            }
+
+        </div>
+    );
+}
+
+
+function ToDoList() {
+    const [toDo, setToDo] = useState("");
+    const [toDos, setToDos] = useState([]);
+    const onChange = (event) => setToDo(event.target.value);
+    const onSubmit = (event) => {
+        event.preventDefault();
+        if (toDo === "") {
+            return;
+        }
+        setToDos((currentArray) => [toDo, ...currentArray]);
+        setToDo("");
+
+    };
+
+    return (
+        <div>
+            <h1>My to Dos {toDos.length}</h1>
+            <form onSubmit={onSubmit}>
+                <input
+                    type="text"
+                    placeholder="Write your to do..."
+                    value={toDo}
+                    onChange={onChange}
+                />
+                <button>Add To Do</button>
+            </form>
+            <hr/>
+            <ul>
+                {toDos.map((item, index) => (
+                    <li key={index}>{item}</li>
+                ))}
+            </ul>
+        </div>
+    );
+}
 
 function Hello() {
 
@@ -14,7 +166,7 @@ function Hello() {
     return <h1>Hello</h1>;
 }
 
-function App() {
+function App_v2() {
 
     const [showing, setShowing] = useState(false);
     const onLClick = () => setShowing((prev) => !prev);
@@ -26,9 +178,6 @@ function App() {
         </div>
     );
 }
-
-export default App;
-
 
 /*
 * App 컴포넌트
