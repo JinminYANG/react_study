@@ -1,8 +1,4 @@
-import Button from "./Button";
-import styles from "./App.module.css";
 import {useState, useEffect} from "react";
-import Movie from "./components/Movie";
-
 import {
     BrowserRouter as Router,
     Switch,
@@ -10,21 +6,27 @@ import {
 } from "react-router-dom";
 import Home from "./routes/Home";
 import Detail from "./routes/Detail";
+import Navbar from "./components/Navbar/Navbar";
+import Update from "./routes/Update";
+import Favorite from "./routes/Favorite";
+import Animation from "./routes/Animation";
 
 function App() {
     // router를 render 해야 한다
     // router는 url을 보고 있는 컴포넌트이다
 
-    return <Router>
-        <Switch>
-            <Route path="/movie/:id">
-                <Detail/>
-            </Route>
-            <Route path="/">
-                <Home/>
-            </Route>
-        </Switch>
-    </Router>;
+    return (
+        <Router>
+            <Navbar/>
+            <Switch>
+                <Route exact path="/" component={Home}/>
+                <Route path="/movie/:id" component={Detail}/>
+                <Route path="/update" component={Update}/>
+                <Route path="/favorite" component={Favorite}/>
+                <Route path="/animation" component={Animation}/>
+            </Switch>
+        </Router>
+    );
 
     /*const [loading, setLoading] = useState(true);
     const [movies, setMovies] = useState([]);

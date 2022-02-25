@@ -4,13 +4,6 @@
     justify-content: center;
 }
 
-.nav{
-    position: relative;
-    top: 0;
-    width: 100%;
-    height: 5vh;
-}
-
 .loader {
     width: 100%;
     height: 100vh;

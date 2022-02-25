@@ -4,6 +4,10 @@
     height: 5vh;
 }
 
+.nav__logo{
+
+}
+
 .nav__contents ul {
     display: flex;
     column-gap: 20px;

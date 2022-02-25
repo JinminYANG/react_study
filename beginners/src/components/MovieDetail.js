@@ -1,9 +1,27 @@
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
+import styles from "./MovieDetail.module.css";
+import {FaStar} from "react-icons/fa";
+import {useState} from "react";
+import RatingStar from "./RatingStar";
 
 function MovieDetail({coverImg, title, description, rating, genres}) {
+    /*    let ratingStar = "";
+        const getRatingStar = (rating) => {
+            for (let i = 0; i < Math.round(rating); i++) {
+                ratingStar += "*";
+            }
+        };
+
+        getRatingStar(rating);*/
+
+    /*    const [ratingStar, setRatingStar] = useState([]);
+        const getRatingStar = () => {
+
+        };*/
+
     return (
-        <div>
+        <div className={styles.content}>
             <img src={coverImg} alt={title}/>
             <h1>{title}</h1>
             <p>desc: {description}</p>
@@ -11,21 +29,26 @@ function MovieDetail({coverImg, title, description, rating, genres}) {
                 {genres.map((g) => (
                     <li key={g}>{g}</li>
                 ))}
-
             </ul>
-            <p>rating: {rating}</p>
-            <strong><Link to={"/"}>Home</Link></strong>
+            <div>
+                rating: <RatingStar
+                number={rating}
+            />
+            </div>
+
+            <hr/>
+            <Link to={"/"}>Home</Link>
         </div>
     );
 }
 
 
 MovieDetail.propTypes = {
-    coverImg : PropTypes.string.isRequired,
-    title : PropTypes.string.isRequired,
-    description : PropTypes.string.isRequired,
-    rating : PropTypes.number.isRequired,
-    genres : PropTypes.arrayOf(PropTypes.string).isRequired
+    coverImg: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    rating: PropTypes.number.isRequired,
+    genres: PropTypes.arrayOf(PropTypes.string).isRequired
 };
 
 

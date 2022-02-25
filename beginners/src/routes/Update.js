@@ -1,14 +1,14 @@
 import {useEffect, useState} from "react";
-import Movie from "../components/Movie";
 import styles from "./Home.module.css";
+import Movie from "../components/Movie";
 
-function Home() {
+function Update() {
     const [loading, setLoading] = useState(true);
     const [movies, setMovies] = useState([]);
 
     const getMovies = async () => {
-        const response = await fetch(`https://yts.mx/api/v2/list_movies.json?minimum_rating=9&sort_by=year`);
-        const json = await response.json();
+        const json = await (
+            await fetch(`https://yts.mx/api/v2/list_movies.json?sort_by=date_added`)).json();
         setMovies(json.data.movies);
         setLoading(false);
         console.log(json);
@@ -39,13 +39,13 @@ function Home() {
                                     summary={movie.summary}
                                     genres={movie.genres}
                                 />
-                            ))};
+                            ))}
                         </div>
                     </div>
             }
 
         </div>
-    );
+    )
 }
 
-export default Home;
+export default Update;
