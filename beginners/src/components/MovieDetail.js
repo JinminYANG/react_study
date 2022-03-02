@@ -6,20 +6,6 @@ import {useState} from "react";
 import RatingStar from "./RatingStar";
 
 function MovieDetail({coverImg, title, description, rating, genres}) {
-    /*    let ratingStar = "";
-        const getRatingStar = (rating) => {
-            for (let i = 0; i < Math.round(rating); i++) {
-                ratingStar += "*";
-            }
-        };
-
-        getRatingStar(rating);*/
-
-    /*    const [ratingStar, setRatingStar] = useState([]);
-        const getRatingStar = () => {
-
-        };*/
-
     return (
         <div className={styles.content}>
             <img src={coverImg} alt={title}/>
