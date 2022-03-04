@@ -6,7 +6,7 @@ import {
     NavBtn,
     NavBtnLink
 } from './NavbarElements';
-
+import Button from '@mui/material/Button';
 
 function Navbar() {
     return (

@@ -10,6 +10,8 @@ import Navbar from "./components/Navbar/Navbar";
 import Update from "./routes/Update";
 import Favorite from "./routes/Favorite";
 import Animation from "./routes/Animation";
+import SignIn from "./routes/SignIn";
+
 
 function App() {
     // router를 render 해야 한다
@@ -24,6 +26,7 @@ function App() {
                 <Route path="/update" component={Update}/>
                 <Route path="/favorite" component={Favorite}/>
                 <Route path="/animation" component={Animation}/>
+                <Route path="/signin" component={SignIn}/>
             </Switch>
         </Router>
     );
