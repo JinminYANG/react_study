@@ -9,10 +9,23 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
+import {CssBaseline} from "@mui/material";
+
 
 function SignIn() {
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        const data = new FormData(event.currentTarget);
+
+        console.log({
+            email: data.get('email'),
+            password: data.get('password'),
+        });
+    };
+
     return (
         <Container component="main" maxWidth="xs">
+            <CssBaseline />
             <Box
                 sx={{
                     marginTop: 8,
@@ -27,45 +40,48 @@ function SignIn() {
                 <Typography component="h1" variant="h5">
                     Sign In
                 </Typography>
-
-                <TextField
-                    label="Email Address"
-                    required
-                    fullWidth
-                    name="email"
-                    autoComplete="email"
-                    margin="normal"
-                />
-                <TextField
-                    label="Password"
-                    type="password"
-                    required
-                    fullWidth
-                    name="password"
-                    autoComplete="current-password"
-                    margin="normal"
-                />
-                <FormControlLabel
-                    control={<Checkbox value="remember" color="primary" />}
-                    label="Remember me"
-                    fullWidth
-                />
-                <Button
-                    type="submit"
-                    fullWidth
-                    variant="contained"
-                    sx={{ mt: 3, mb: 2 }}
-                >
-                    Sign in
-                </Button>
-                <Grid container>
-                    <Grid item xs>
-                        <Link to="/update">Forgot password?</Link>
+                <Box component="form" onSubmit={handleSubmit}>
+                    <TextField
+                        label="Email Address"
+                        id="email"
+                        required
+                        fullWidth
+                        name="email"
+                        autoComplete="email"
+                        autoFocus
+                        margin="normal"
+                    />
+                    <TextField
+                        label="Password"
+                        id="password"
+                        type="password"
+                        required
+                        fullWidth
+                        name="password"
+                        autoComplete="current-password"
+                        margin="normal"
+                    />
+                    <FormControlLabel
+                        control={<Checkbox value="remember" color="primary" />}
+                        label="Remember me"
+                    />
+                    <Button
+                        type="submit"
+                        fullWidth
+                        variant="contained"
+                        sx={{ mt: 3, mb: 2 }}
+                    >
+                        Sign in
+                    </Button>
+                    <Grid container>
+                        <Grid item xs>
+                            <Link to="/update">Forgot password?</Link>
+                        </Grid>
+                        <Grid item>
+                            <Link>Sign Up</Link>
+                        </Grid>
                     </Grid>
-                    <Grid item>
-                        <Link>Sign Up</Link>
-                    </Grid>
-                </Grid>
+                </Box>
             </Box>
         </Container>
     );

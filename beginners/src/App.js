@@ -215,7 +215,7 @@ function App_v1() {
 
     return (
         <div>
-            <input type="text" placeholder="Search here..." onChange={onChange} value={keyword}/>
+            <input type="text" placeholder="SearchBox here..." onChange={onChange} value={keyword}/>
             <h1>{counter}</h1>
             <button onClick={onClick}>Click me</button>
 

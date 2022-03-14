@@ -6,7 +6,7 @@ import {
     NavBtn,
     NavBtnLink
 } from './NavbarElements';
-import Button from '@mui/material/Button';
+import SearchAppBar from "./SearchBox";
 
 function Navbar() {
     return (
@@ -26,6 +26,7 @@ function Navbar() {
                     Animation
                 </NavLink>
             </NavMenu>
+            <SearchAppBar />
             <NavBtn>
                 <NavBtnLink to="/signin">Sign In</NavBtnLink>
             </NavBtn>
