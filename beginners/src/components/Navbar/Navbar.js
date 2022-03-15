@@ -6,7 +6,7 @@ import {
     NavBtn,
     NavBtnLink
 } from './NavbarElements';
-import SearchAppBar from "./SearchBox";
+// import SearchAppBar from "./SearchBox";
 
 function Navbar() {
     return (
@@ -26,7 +26,7 @@ function Navbar() {
                     Animation
                 </NavLink>
             </NavMenu>
-            <SearchAppBar />
+            {/*<SearchAppBar />*/}
             <NavBtn>
                 <NavBtnLink to="/signin">Sign In</NavBtnLink>
             </NavBtn>

@@ -1,12 +1,9 @@
+/*
+
 import * as React from "react";
 import { styled, alpha } from "@mui/material/styles";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
 import InputBase from "@mui/material/InputBase";
-import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import {useState} from "react";
 
@@ -53,25 +50,16 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 
-
-export default function SearchAppBar() {
+function SearchAppBar() {
     const [inputValue, setInputValue] = useState('');
-    const searchSpace = (event) => {
+    let searchSpace = (event) => {
         let keyword = event.target.value;
         setInputValue(keyword);
+
     };
 
     return (
         <Toolbar>
-            <IconButton
-                size="large"
-                edge="start"
-                color="inherit"
-                aria-label="open drawer"
-                sx={{ mr: 2 }}
-            >
-                <MenuIcon />
-            </IconButton>
             <Search>
                 <SearchIconWrapper>
                     <SearchIcon />
@@ -86,3 +74,5 @@ export default function SearchAppBar() {
         </Toolbar>
     );
 }
+
+*/

@@ -2,6 +2,7 @@
     height: 100%;
     display: flex;
     justify-content: center;
+    flex-direction: column;
 }
 
 .loader {
@@ -11,6 +12,16 @@
     justify-content: center;
     align-items: center;
     font-weight: 300;
+}
+
+.search_container{
+    width: 40%;
+    margin: auto;
+    padding: 30px 50px;
+}
+
+.input{
+    width: 100%;
 }
 
 .movies {

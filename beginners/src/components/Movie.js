@@ -5,7 +5,7 @@ import styles from "./Movie.module.css";
 function Movie({id, coverImg, title, year, summary, genres}) {
     return (
         <div className={styles.movie}>
-            <img src={coverImg} alt={title} className={styles.movie__img} />
+            <img src={coverImg} alt={title} className={styles.movie__img}/>
             <div>
                 <h2 className={styles.movie__title}>
                     <Link to={`/movie/${id}`}>{title}</Link>
@@ -24,10 +24,10 @@ function Movie({id, coverImg, title, year, summary, genres}) {
 
 Movie.propTypes = {
     id: PropTypes.number.isRequired,
-    coverImg : PropTypes.string.isRequired,
-    title : PropTypes.string.isRequired,
-    summary : PropTypes.string.isRequired,
-    genres : PropTypes.arrayOf(PropTypes.string).isRequired
+    coverImg: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    summary: PropTypes.string.isRequired,
+    genres: PropTypes.arrayOf(PropTypes.string).isRequired
 };
 
 export default Movie;
