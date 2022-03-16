@@ -12,7 +12,7 @@ function Navbar() {
     return (
         <Nav>
             <NavLink to="/">
-                <h1>Movies</h1>
+                <h1>RanGod</h1>
             </NavLink>
             <Bars/>
             <NavMenu>

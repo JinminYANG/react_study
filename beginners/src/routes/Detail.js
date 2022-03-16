@@ -38,6 +38,7 @@ function Detail() {
                             description={detail.description_full}
                             rating={detail.rating}
                             genres={detail.genres}
+                            backgroundImg={detail.background_image_original}
                         />
                     </div>
             }

@@ -10,7 +10,7 @@ function RatingStar({number}) {
     };
 
     return (
-        <div>
+        <div style={{display:"inline-block", lineHeight:"1"}}>
             <ReactStars
                 {...firstExample}
                 emptyIcon={<i className="far fa-star"></i>}
