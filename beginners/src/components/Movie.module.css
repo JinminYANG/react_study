@@ -1,6 +1,6 @@
 .movie {
     background-color: white;
-    margin-bottom: 70px;
+    margin-bottom: 30px;
     font-weight: 300;
     padding: 20px;
     border-radius: 5px;
@@ -9,13 +9,13 @@
     grid-template-columns: minmax(150px, 1fr) 2fr;
     grid-gap: 20px;
     text-decoration: none;
-    color: inherit;
-    box-shadow: 0 13px 27px -5px rgba(50, 50, 93, 0.25),
-    0 8px 16px -8px rgba(0, 0, 0, 0.3), 0 -6px 16px -6px rgba(0, 0, 0, 0.025);
+    /*box-shadow: 0 13px 27px -5px rgba(50, 50, 93, 0.25),
+    0 8px 16px -8px rgba(0, 0, 0, 0.3), 0 -6px 16px -6px rgba(0, 0, 0, 0.025);*/
+    box-shadow: 0 13px 27px -5px rgba(50, 50, 93, 0.25);
 }
 
 .movie__img {
-    position: relative;
+    /*position: relative;*/
     top: -50px;
     max-width: 150px;
     width: 100%;
@@ -26,6 +26,7 @@
 
 .movie__title,
 .movie__year {
+    word-break: break-all;
     margin: 0;
     font-weight: 300;
     text-decoration: none;
@@ -36,6 +37,12 @@
     font-size: 24px;
     color: #2c2c2c;
     text-decoration: none;
+}
+
+.movie__summary{
+    max-height: 110px;
+    overflow: hidden;
+    /*text-overflow: ellipsis;*/
 }
 
 .movie__genres {

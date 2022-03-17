@@ -11,6 +11,7 @@ import Update from "./routes/Update";
 import Favorite from "./routes/Favorite";
 import Animation from "./routes/Animation";
 import SignIn from "./routes/SignIn";
+import Slide from "./routes/Slide";
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
                 <Route path="/favorite" component={Favorite}/>
                 <Route path="/animation" component={Animation}/>
                 <Route path="/signin" component={SignIn}/>
+                <Route path="/slide" component={Slide}/>
             </Switch>
         </Router>
     );
