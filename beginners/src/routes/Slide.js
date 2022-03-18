@@ -6,7 +6,8 @@ import Container from "@mui/material/Container";
 import {CircularProgress, Grid} from "@mui/material";
 import Movie from "../components/Movie";
 import {useEffect, useState} from "react";
-import {SlideTitle} from "./SlideStyle";
+import {ContainerClass, leftButton, nextArrow, SlideTitle} from "./SlideStyle";
+import styled from "styled-components";
 
 export default function Slide() {
     const [loading, setLoading] = useState(false);
@@ -46,56 +47,114 @@ export default function Slide() {
         getMovies(FEATURED_API, 1000);
     }, []);
 
-    // Custom Arrow... 
+    // Custom Arrow...
     function SampleNextArrow(props) {
-        const { className, style, onClick } = props;
+        const {className, style, onClick} = props;
         return (
             <div
                 className={className}
-                style={{ ...style, display: "block", background: "red" }}
+                style={{...style, background: "red"}}
                 onClick={onClick}
             />
         );
     }
 
-    function SamplePrevArrow(props) {
-        const { className, style, onClick } = props;
-        return (
-            <div
-                className={className}
-                style={{ ...style, display: "block", background: "green" }}
-                onClick={onClick}
-            />
-        );
-    }
+    // sass를 이용한 가상클래스 style
+    const Button = styled.button`
+        z-index: 99;
+        background-color: rgba(0, 0, 0, 0.1);
+        &:before{
+            font-size: 40px !important;
+            color: rgba(0,0,0,1) !important;
+        }
+        &:hover{
+            background-color: rgba(0, 0, 0, 0.4);
+            transition: all 0.3s;
+        }
+    `;
 
-    function nextArrow(props) {
-        const { className, style, onClick } = props;
-        return (
-            <div
-                className={className}
-                style={{ ...style, display: "block", background: "green" }}
-                onClick={onClick}
-            />
-        );
-    }
+    const LeftArrow = ({className, style, onClick}) => (
+        <Button
+            style={{...style, left: "0", width: "50px", height: "100%"}}
+            onClick={onClick}
+            className={className}
+        >
+        </Button>
+    );
+    const RightArrow = ({className, style, onClick}) => (
+        <Button
+            style={{...style, right:"0", width: "50px", height: "100%"}}
+            onClick={onClick}
+            className={className}
+        >
+        </Button>
+    );
 
-    const slideSettings = {
+    const popularSlideSettings = {
         dots: true,
         className: "center",
         centerMode: true,
         infinite: true,
         centerPadding: "80px",
         slidesToShow: 3,
-        speed: 500,
+        speed: 700,
         // autoplay: true,
         autoplaySpeed: 500,
-        nextArrow: <SampleNextArrow />,
-        prevArrow: <SamplePrevArrow />
+        nextArrow: <RightArrow/>,
+        prevArrow: <LeftArrow/>,
+        responsive: [
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2,
+                }
+            },
+            {
+                breakpoint: 600,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                }
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                }
+            }
+        ]
+        // responsive error -> style error로 추정됨
+    };
+
+    // single slider
+    const downloadSlideSettings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        vertical: true,
+        nextArrow: <RightArrow/>,
+        prevArrow: <LeftArrow/>,
+    };
+
+    // fade slider
+    const likeSlideSettings = {
+        dots: true,
+        fade: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        adaptiveHeight: true,    // 이 속성을 이용해서 div에 따른 크기를 유동적으로 설정할 수 있음
+        nextArrow: <RightArrow/>,
+        prevArrow: <LeftArrow/>,
     };
 
     return (
-        <Container maxWidth="xl">
+        <Container maxWidth="false" disableGutters={true}>
             {
                 loading
                     ?
@@ -104,7 +163,7 @@ export default function Slide() {
                     <div>
                         <div>
                             <SlideTitle>인기 순위</SlideTitle>
-                            <Slider {...slideSettings}>
+                            <Slider {...popularSlideSettings}>
                                 {movies.map((movie) => (
                                     <div key={movie.id}>
                                         <Movie
@@ -114,16 +173,16 @@ export default function Slide() {
                                             coverImg={movie.medium_cover_image}
                                             title={movie.title.length > 16 ? `${movie.title.slice(0, 16)}...` : movie.title}
                                             summary={movie.summary}
-                                            genres={movie.genres.length > 3 ? movie.genres.slice(0,3): movie.genres}
+                                            genres={movie.genres.length > 3 ? movie.genres.slice(0, 3) : movie.genres}
                                         />
                                     </div>
                                 ))}
                             </Slider>
                         </div>
-                        
+
                         <div>
                             <SlideTitle>다운로드 순위</SlideTitle>
-                            <Slider {...slideSettings}>
+                            <Slider {...downloadSlideSettings}>
                                 {movies.map((movie) => (
                                     <div key={movie.id}>
                                         <Movie
@@ -141,7 +200,7 @@ export default function Slide() {
                         </div>
                         <div>
                             <SlideTitle>찜 순위</SlideTitle>
-                            <Slider {...slideSettings}>
+                            <Slider {...likeSlideSettings}>
                                 {movies.map((movie) => (
                                     <div key={movie.id}>
                                         <Movie
