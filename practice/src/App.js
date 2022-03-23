@@ -1,17 +1,9 @@
-import React, {Component, useState} from "react";
+import React, {Component} from "react";
 import './App.css';
-import EventPracticeClass from "./EventPracticeClass";
-import {EventPracticeFunction} from "./EventPracticeFunction";
-import {EventPracticeFunctionForm} from "./EventPracticeFunctionForm";
-import {ValidationSample} from "./ValidationSample";
-import {RefSample} from "./RefSample";
-import IterationSample from "./IterationSample";
-import LifeCycleSample from "./LifeCycleSample";
-import Info from "./Info";
-import Counter from "./Counter";
 
+import SassComponent from "./SassComponent";
 
-
+// eslint-disable-next-line
 class Subject extends Component {
     render() {
         return (
@@ -23,9 +15,10 @@ class Subject extends Component {
     }
 }
 
+// eslint-disable-next-line
 class TOC extends Component {
     render() {
-        return(
+        return (
             <nav>
                 <ul>
                     <li><a href="1.html">HTML</a></li>
@@ -37,9 +30,10 @@ class TOC extends Component {
     }
 }
 
+// eslint-disable-next-line
 class Content extends Component {
     render() {
-        return(
+        return (
             <article>
                 <h2>HTML</h2>
                 HTML is HyperText Markup Language.
@@ -49,9 +43,11 @@ class Content extends Component {
     }
 }
 
+// eslint-disable-next-line
 function getRandomColor() {
     return '#' + Math.floor(Math.random() * 16777215).toString(16);
 }
+
 /*
 
 class App extends Component {
@@ -83,28 +79,34 @@ class App extends Component {
 */
 
 const App = () => {
-/*
-    const [visible, setVisible] = useState(false);
+    /*
+        const [visible, setVisible] = useState(false);
 
-    return(
-        <div>
-            <button
-                onClick={() => {
-                    setVisible(!visible)
-                }}
-            >
-                {visible ? '숨기기' : '보이기'}
-            </button>
-            <hr />
-            {visible && <Info></Info>}
-        </div>
-    );
-*/
+        return(
+            <div>
+                <button
+                    onClick={() => {
+                        setVisible(!visible)
+                    }}
+                >
+                    {visible ? '숨기기' : '보이기'}
+                </button>
+                <hr />
+                {visible && <Info></Info>}
+            </div>
+        );
+    */
 
     // return <Counter></Counter>
 
-    return <Info></Info>
+    // return <Info></Info>
 
+    // return <Average></Average>
+    return (
+        <div>
+            <SassComponent/>
+        </div>
+    )
 };
 
 export default App;
