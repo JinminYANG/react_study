@@ -14,7 +14,12 @@ const Immer = () => {
         e => {
             const {name, value} = e.target;
             setForm(
+                /*
                 produce(form, draft => {
+                    draft[name] = value;
+                })
+                */
+                produce(draft => {
                     draft[name] = value;
                 })
             );
@@ -34,7 +39,12 @@ const Immer = () => {
 
             // array에 새 항목 등록
             setData(
+                /*
                 produce(data, draft => {
+                    draft.array.push(info);
+                })
+                */
+                produce(draft => {
                     draft.array.push(info);
                 })
             );
@@ -53,7 +63,12 @@ const Immer = () => {
     const onRemove = useCallback(
         id => {
             setData(
+                /*
                 produce(data, draft => {
+                    draft.array.splice(draft.array.findIndex(info => info.id !== id), 1);
+                })
+                */
+                produce(draft => {
                     draft.array.splice(draft.array.findIndex(info => info.id !== id), 1);
                 })
             );
