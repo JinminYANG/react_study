@@ -29,17 +29,26 @@ export default App;
 import NewsList from './components/NewsList';
 import Categories from './components/Categories';
 import { useCallback, useState } from 'react';
+import { Route, Router } from 'react-router-dom';
+import NewsPage from './pages/NewsPage';
 
 const App = () => {
-  const [category, setCategoty] = useState('all');
-  const onSelect = useCallback(category => setCategoty(category), []);
+  /*
+  const [category, setCategory] = useState('all');
+  const onSelect = useCallback(category => setCategory(category), []);
 
   return (
     <>
       <Categories category={category} onSelect={onSelect} />
-      <NewsList categoty={category} />
+      <NewsList category={category} />
     </>
   );
+  */
+
+  return (
+    <Route path={'/:category?'} component={NewsPage} />
+  );
+
 };
 
 export default App;
