@@ -44,7 +44,7 @@ export const login = createAction(LOGIN, ({username, password}) => ({
 
 // 사가 생성
 const registerSaga = createRequestSaga(REGISTER, authAPI.register);
-const loginSaga = createRequestSaga(REGISTER, authAPI.login);
+const loginSaga = createRequestSaga(LOGIN, authAPI.login);
 export function* authSaga() {
   yield takeLatest(REGISTER, registerSaga);
   yield takeLatest(LOGIN, loginSaga);
