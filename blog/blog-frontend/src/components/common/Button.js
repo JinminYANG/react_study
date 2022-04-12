@@ -46,8 +46,7 @@ const StyledLink = styled(Link)`
   ${buttonStyle}
 `;
 
-/*
-const Button = ({ to, history, ...rest }) => {
+/*const Button = ({ to, history, ...rest }) => {
   const onClick = e => {
     // to가 있다면 to로 페이지 이동
     if (to) {
@@ -60,8 +59,8 @@ const Button = ({ to, history, ...rest }) => {
   return <StyledButton {...rest} onClick={onClick} />;
 };
 
-export default withRouter(Button);
-*/
+export default withRouter(Button);*/
+
 
 const Button = props => {
   return props.to ? (

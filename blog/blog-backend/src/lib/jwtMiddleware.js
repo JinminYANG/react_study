@@ -6,6 +6,7 @@ const jwtMiddleware = async (ctx, next) => {
   if (!token) return next(); // 토큰 없음
 
   try {
+    // eslint-disable-next-line no-undef
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     ctx.state.user = {
       _id: decoded._id,

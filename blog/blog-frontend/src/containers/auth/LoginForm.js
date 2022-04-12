@@ -50,8 +50,10 @@ const LoginForm = ({ history }) => {
     if (auth) {
       console.log('로그인 성공');
       dispatch(check());
+      // his.push('/');
     }
   }, [auth, authError, dispatch]);
+
 
   useEffect(() => {
     if (user) {
