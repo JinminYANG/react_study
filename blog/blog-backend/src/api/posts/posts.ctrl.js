@@ -1,6 +1,5 @@
 /*
 let postId = 1;
-
 // posts 초기 배열 데이터
 const posts = [
   {
@@ -9,7 +8,6 @@ const posts = [
     body: '내용',
   },
 ];
-
 /!* 포스트 작성
 POST /api/posts
 { title, body }
@@ -22,14 +20,12 @@ export const write = ctx => {
   posts.push(post);
   ctx.body = post;
 };
-
 /!*  포스트 목록 조회
 GET /api/posts
 *!/
 export const list = ctx => {
   ctx.body = posts;
 };
-
 /!*  특정 포스트 조회
 GET /api/posts/:id
 *!/
@@ -49,7 +45,6 @@ export const read = ctx => {
   }
   ctx.body = post;
 };
-
 /!*  특정 포스트 제거
 DELETE /api/posts/:id
 *!/
@@ -69,7 +64,6 @@ export const remove = ctx => {
   posts.splice(index, 1);
   ctx.status = 204; // No content
 };
-
 /!*  포스트 수정(교체)
 PUT /api/posts/:id
 {title, body}
@@ -95,7 +89,6 @@ export const replace = ctx => {
   };
   ctx.body = posts[index];
 };
-
 /!*  포스트 수정(특정 필드 변경)
 PATCH /api/posts/:id
 { title, body }
