@@ -1,3 +1,4 @@
+/*
 import Post from './models/post';
 
 export default function createFakeData() {
@@ -11,4 +12,4 @@ export default function createFakeData() {
   Post.insertMany(posts, (err, docs) => {
     console.log(docs);
   });
-}
+}*/

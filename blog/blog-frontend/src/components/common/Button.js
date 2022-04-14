@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import palette from '../../lib/styles/palette';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const buttonStyle = css`
   border: none;
@@ -26,7 +26,6 @@ const buttonStyle = css`
             width: 100%;
             font-size: 1.125rem;
           `}
-
   ${props =>
           props.cyan &&
           css`
@@ -36,6 +35,11 @@ const buttonStyle = css`
               background: ${palette.cyan[4]};
             }
           `}
+  &:disabled {
+    background: ${palette.gray[3]};
+    color: ${palette.gray[5]};
+    cursor: not-allowed;
+  }
 `;
 
 const StyledButton = styled.button`
@@ -64,9 +68,9 @@ export default withRouter(Button);*/
 
 const Button = props => {
   return props.to ? (
-    <StyledLink {...props} cyan={props.cyan ? 1: 0}/>
+    <StyledLink {...props} cyan={props.cyan ? 1 : 0} />
   ) : (
-    <StyledButton {...props}/>
+    <StyledButton {...props} />
   );
 };
 

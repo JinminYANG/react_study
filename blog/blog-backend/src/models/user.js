@@ -43,6 +43,5 @@ UserSchema.methods.generateToken = function() {
   return token;
 };
 
-
 const User = mongoose.model('User', UserSchema);
 export default User;

@@ -45,19 +45,18 @@ const PostItemBlock = styled.div`
   }
 `;
 
-
+{/* 여기서 post에 대한 데이터 중 user.username 을 불러오지 못함*/
+}
 const PostItem = ({ post }) => {
-  const { publishedDate, user, tags, title, body, _id } = post;
+  const { title, user, publishedDate, tags, body, _id } = post;
   return (
     <PostItemBlock>
       <h2>
-        {/* 먼가 불안한 부분임 */}
         <Link to={`/@${user.username}/${_id}`}>{title}</Link>
       </h2>
       <SubInfo
         username={user.username}
-        publishedDate={new Date(publishedDate)}
-      />
+        publishedDate={new Date(publishedDate)} />
       <Tags tags={tags} />
       <p>{body}</p>
     </PostItemBlock>
@@ -66,7 +65,6 @@ const PostItem = ({ post }) => {
 
 
 const PostList = ({ posts, loading, error, showWriteButton }) => {
-
   // 에러 발생 시
   if (error) {
     return <PostListBlock>에러가 발생했습니다.</PostListBlock>;

@@ -1,7 +1,7 @@
+import React, { useEffect } from 'react';
 import qs from 'qs';
 import { withRouter } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
 import PostList from '../../components/posts/PostList';
 import { listPosts } from '../../modules/posts';
 
@@ -12,10 +12,9 @@ const PostListContainer = ({ location, match }) => {
       posts: posts.posts,
       error: posts.error,
       loading: loading['posts/LIST_POSTS'],
-      user: user.user,
+      user: user.user,  /* 여기서 user에 대한 전달 오류인지? */
     }),
   );
-
   useEffect(() => {
     const { username } = match.params;
     const { tag, page } = qs.parse(location.search, {
