@@ -3,6 +3,7 @@ import Responsive from '../common/Responsive';
 import palette from '../../lib/styles/palette';
 import SubInfo from '../common/SubInfo';
 import Tags from '../common/Tags';
+import { Helmet } from 'react-helmet-async';
 
 
 const PostViewerBlock = styled(Responsive)`
@@ -27,7 +28,7 @@ const PostContent = styled.div`
 `;
 
 
-const PostViewer = ({ post, error, loading }) => {
+const PostViewer = ({ post, error, loading, actionButtons }) => {
 
   // 에러 발생 시
   if (error) {
@@ -46,11 +47,15 @@ const PostViewer = ({ post, error, loading }) => {
 
   return (
     <PostViewerBlock>
+      <Helmet>
+        <title>{title} - REACTERS</title>
+      </Helmet>
       <PostHead>
         <h1>{title}</h1>
         <SubInfo username={user.username} publishedDate={publishedDate} hasMarginTop />
         <Tags tags={tags} />
       </PostHead>
+      {actionButtons}
       <PostContent
         dangerouslySetInnerHTML={{ __html: body }}
       />

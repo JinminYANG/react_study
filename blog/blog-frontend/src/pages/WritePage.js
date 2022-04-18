@@ -6,16 +6,21 @@ import WriteActionButtons from '../components/write/WriteActionButtons';
 import EditorContainer from '../containers/write/EditorContainer';
 import TagBoxContainer from '../containers/write/TagBoxContainer';
 import WriteActionButtonsContainer from '../containers/write/WriteActionButtonsContainer';
+import { Helmet } from 'react-helmet-async';
 
 const WritePage = () => {
   return (
+
     <Responsive>
+      <Helmet>
+        <title>글 작성하기 - REACTERS </title>
+      </Helmet>
       {/*<Editor/>*/}
-      <EditorContainer/>
+      <EditorContainer />
       {/*<TagBox/>*/}
-      <TagBoxContainer/>
+      <TagBoxContainer />
       {/*<WriteActionButtons/>*/}
-      <WriteActionButtonsContainer/>
+      <WriteActionButtonsContainer />
     </Responsive>
   );
 };
