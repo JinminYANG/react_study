@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faTimes, faUser } from '@fortawesome/free-solid-svg-icons';
 import styled from 'styled-components';
+import { Link, useLocation } from 'react-router-dom';
 
 const StyledHeader = styled.div`
   //max-width: 1280px;
@@ -90,6 +91,8 @@ const Header = () => {
    const [isToggled, setIsToggled] = useState(false);
    const [userToggled, setUserToggled] = useState(false);
 
+   const { pathname } = useLocation();
+
    return (
       <StyledHeader isToggled={isToggled} userToggled={userToggled}>
 
@@ -110,7 +113,9 @@ const Header = () => {
 
          {/* 메뉴 리스트 */}
          <ul className={'header__menulist'}>
-            <li>dashboard1</li>
+            <li>
+               <Link to={`${pathname}/1`}>dashboard1</Link>
+            </li>
             <li>dashboard2</li>
             <li>dashboard3</li>
             <li>dashboard4</li>
