@@ -104,6 +104,7 @@ const Header = () => {
          {/* Apple 로고 */}
          <div className='logo'>
             {/*<FontAwesomeIcon icon={faApple}/>*/}
+            <Link to={"/"}><h1>Home</h1></Link>
          </div>
 
          {/* User 버튼 */}
@@ -114,12 +115,20 @@ const Header = () => {
          {/* 메뉴 리스트 */}
          <ul className={'header__menulist'}>
             <li>
-               <Link to={`${pathname}/1`}>dashboard1</Link>
+               <Link to={`dashboard/1`} >dashboard1</Link>
             </li>
-            <li>dashboard2</li>
-            <li>dashboard3</li>
-            <li>dashboard4</li>
-            <li>dashboard5</li>
+            <li>
+               <Link to={`dashboard/2`}>dashboard2</Link>
+            </li>
+            <li>
+               <Link to={`dashboard/3`}>dashboard3</Link>
+            </li>
+            <li>
+               <Link to={`dashboard/4`}>dashboard4</Link>
+            </li>
+            <li>
+               <Link to={`dashboard/5`}>dashboard5</Link>
+            </li>
          </ul>
 
          {/* User 메뉴 리스트 */}
