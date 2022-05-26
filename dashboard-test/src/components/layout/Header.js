@@ -12,11 +12,11 @@ const StyledHeader = styled.div`
   justify-content: space-between;
   align-items: center;
   color: white;
-  background-color: black;
+  background-color: dimgray;
 
   .logo {
     margin: 0 1rem;
-    font-size: 2rem;
+    font-size: 1rem;
   }
 
   .header__menulist {

@@ -1,6 +1,7 @@
 import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import SidebarItem from './SidebarItem';
+import { useState } from 'react';
 
 const Side = styled.div`
   display: flex;
@@ -8,33 +9,44 @@ const Side = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 20%;
-`;
-
-const Profile = styled.img`
-  width: 150px;
-  height: 150px;
-  border-radius: 100%;
+  width: 10%;
+  background-color: dimgray;
 `;
 
 const Menu = styled.div`
-  margin-top: 30px;
-  width: 200px;
+  //margin-top: 30px;
+  //width: 200px;
   display: flex;
   flex-direction: column;
 `;
 
 const Sidebar = () => {
+   const [sidebar, setSidebar] = useState(false);
+   const showSidebar = () => setSidebar(!sidebar);
+
    const sidebarMenus = [
       { name: 'Home', path: '/' },
       { name: 'My List', path: '/mylist' },
       { name: 'My favorite', path: '/favorite' },
       { name: 'Setting', path: '/setting' },
    ];
-
-
+   /*
+   * https://w3collective.com/react-sidebar-navigation-component/
+   * sidebar flip control testing...
+   */
    return (
-      <Side>
+      <nav className={sidebar ? "sidebar active" : "sidebar"}>
+         <button className="hamburger" type="button" onClick={showSidebar}>
+            <div></div>
+         </button>
+         <ul onClick={showSidebar}>
+            <li><Link to="/">Home</Link></li>
+            <li><Link to="/services">Services</Link></li>
+            <li><Link to="/contact">Contact</Link></li>
+         </ul>
+      </nav>
+
+      /*<Side>
          <Menu>
             {sidebarMenus.map((menu, index) => {
                return (
@@ -52,7 +64,7 @@ const Sidebar = () => {
                );
             })}
          </Menu>
-      </Side>
+      </Side>*/
    );
 };
 
