@@ -99,7 +99,8 @@ const SidebarV2 = ({children}) => {
                 <section className={"routes"}>
                     {routes.map((route) => (
                         <NavLink
-                            activeClassName={"active"}
+                            className={({ isActive }) => (isActive ? "active" : "not")}
+                            // activeclassName={"active"}
                             to={route.path}
                             key={route.name}
                             className={"link"}

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Routes, Route } from 'react-router-dom';
+import {Routes, Route} from 'react-router-dom';
 import DashboardPage from './pages/DashboardPage';
 import Header from './components/layout/Header';
 import NotFound from './pages/NotFound';
@@ -25,23 +25,24 @@ const Center = styled.div`
 
 
 function App() {
-   return (
-      <>
-         <Header />
+    return (
+        <>
+            <Header/>
 
-         <SidebarV2>
-            <Routes>
-               <Route path={"/"} element={<MainPage />}/>
-               <Route path={"/mylist"} element={<MyListPage />}/>
-               <Route path={"/favorite"} element={<FavoritePage />}/>
-               <Route path={"/setting"} element={<SettingPage />}/>
-            </Routes>
-         </SidebarV2>
+            <SidebarV2>
+                <Routes>
+                    <Route path={"/"} element={<MainPage/>}/>
+                    <Route path={"/mylist"} element={<MyListPage/>}/>
+                    <Route path={"/favorite"} element={<FavoritePage/>}/>
+                    <Route path={"/setting"} element={<SettingPage/>}/>
+                    <Route path='/dashboard/:dashboardId' element={<DashboardPage/>}/>
+                </Routes>
+            </SidebarV2>
 
-         {/*<Center>*/}
+            {/*<Center>*/}
             {/*<Sidebar />*/}
             {/*<SideNavDiv />*/}
-{/*            <Routes>
+            {/*            <Routes>
 
                <Route path='/' element={<MainPage />} />
                <Route path="/product/*" element={<Product />} />
@@ -55,9 +56,9 @@ function App() {
                <Route path='*' element={<NotFound />} />
 
             </Routes>*/}
-         {/*</Center>*/}
-      </>
-   );
+            {/*</Center>*/}
+        </>
+    );
 }
 
 export default App;
