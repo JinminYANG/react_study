@@ -35,7 +35,7 @@ const Pie = (props) => {
             endAngle: -90
         });
 
-        // dataset
+        // Set data
         let data = [
             {
                 category: "Lithuania",
@@ -67,9 +67,8 @@ const Pie = (props) => {
             }
         ];
 
-        // Set data
+        // Make stuff animate on load
         series.data.setAll(data);
-
         series.appear(1000, 100);
 
         return () => {

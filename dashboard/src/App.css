@@ -85,11 +85,24 @@ main{
 
 .flex-container {
     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-content: space-around;
+    width: 100%;
+    /*max-width: calc(100vw - 230px);*/
     border: 1px solid blue;
 }
 
 .flex-container > div {
     border: 1px solid pink;
-    width: 500px;
+    /*width: 100%;*/
+    /*flex-basis: 600px;*/
+    flex-basis: auto;
+    /*width: 100%;*/
+    min-width: 300px;
+    max-width: 500px;
     height: 500px;
+    flex-grow: 1;
 }
+

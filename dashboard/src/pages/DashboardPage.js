@@ -2,6 +2,7 @@ import Content from '../components/layout/Content';
 import {useLocation, useParams} from 'react-router-dom';
 import {useSearchParams, useNavigate} from 'react-router-dom';
 import Pie from "../components/chart/Pie";
+import Column from "../components/chart/Column";
 
 const DashboardPage = () => {
     const {dashboardId} = useParams();
@@ -13,9 +14,9 @@ const DashboardPage = () => {
     // const keyWord = searchParams.get("search");
 
     return (
-        <div style={{width: "100%"}}>
+        <div style={{width: ""}}>
             <Content/>
-            <h3> {dashboardId}번 대시보드 페이지입니다.</h3>
+            <h3> {dashboardId}번 대시보드 페이지입니다.z</h3>
             <ul>
                 <li>hash : {location.hash}</li>
                 <li>pathname : {location.pathname}</li>
@@ -37,6 +38,11 @@ const DashboardPage = () => {
 
             <div className={"flex-container"}>
                 <Pie chartID="pie-one"/>
+                <Pie chartID="pie-two"/>
+                <Pie chartID="pie-3"/>
+                <Pie chartID="pie-4"/>
+                <Pie chartID="pie-5"/>
+                <Column chartID={"column-one"} />
             </div>
         </div>
     );
