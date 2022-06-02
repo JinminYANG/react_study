@@ -78,7 +78,9 @@ const Pie = (props) => {
 
     }, [pieChartId]);
 
-    return (<div id={pieChartId}/>);
+    return (
+        <div id={pieChartId} className={"flex-item-chart"}/>
+    );
 };
 
 export default Pie;

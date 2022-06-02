@@ -122,7 +122,7 @@ const Column = (props) => {
         };
     }, [columnChartId]);
 
-    return (<div id={columnChartId}/>);
+    return (<div id={columnChartId} className={"flex-item-chart"}/>);
 }
 
 export default Column;
