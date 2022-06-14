@@ -1,6 +1,7 @@
 import './App.css';
 import {useState} from "react";
 import {ethers} from "ethers";
+import detectEthereumProvider from '@metamask/detect-provider';
 
 function App() {
 
@@ -17,11 +18,14 @@ function App() {
                     method: "eth_requestAccounts",
                 });
                 setWalletAddress(accounts[0]);
+                alert("계정이 연결되었습니다.");
             } catch (error) {
                 console.log("Error connecting...");
+                alert("계정 연결 중 오류가 발생하였습니다. \n잠시 후 다시 시도해 주십시오.");
             }
         } else {
-            alert('Meta Mast not detected');
+            // alert('Meta Mask not detected');
+            alert("메타마스크가 감지되지 않았습니다. \n설치 후 다시 시도해 주십시오.")
         }
     }
 
@@ -29,7 +33,9 @@ function App() {
         if (typeof window.ethereum !== 'undefined') {
             await requestAccount();
 
-            const provider = new ethers.providers.Web3Provider(window.ethereum);
+            // const provider = new ethers.providers.Web3Provider(window.ethereum);
+            const provider = await detectEthereumProvider();
+            // startApp(provider);
             console.log(provider);
         }
     }
@@ -61,6 +67,7 @@ function App() {
             <h3>Wallet Address: {walletAddress}</h3>
 
             <button onClick={SendEth}>Send Eth.</button>
+            {/*<button onClick={connectButton}>Connect</button>*/}
         </div>
     );
 }
