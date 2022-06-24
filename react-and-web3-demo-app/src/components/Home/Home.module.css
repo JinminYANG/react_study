@@ -5,3 +5,15 @@
     margin: 2rem auto;
     text-align: center;
 }
+
+.btns{
+    width: 90%;
+    max-width: 40rem;
+    padding: 3rem;
+    margin: 2rem auto;
+    text-align: center;
+}
+
+.logout{
+    font-size: 2rem;
+}

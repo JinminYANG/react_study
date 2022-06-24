@@ -24,7 +24,7 @@ main {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #741188;
+    background-color: darkblue;
     padding: 0 2rem;
 }
 
@@ -48,9 +48,11 @@ main {
 .nav a {
     text-decoration: none;
     color: white;
+    cursor: pointer;
+    text-overflow: ellipsis;
 }
 
 .nav a:hover,
 .nav a:active {
-    color: #f3cafb;
+    color: mediumblue;
 }

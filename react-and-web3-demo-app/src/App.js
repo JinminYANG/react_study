@@ -11,6 +11,7 @@ function App() {
     const [chainId, setChainId] = useState(null);
     const [web3, setWeb3] = useState(null);
 
+
     const NETWORKS = {
         1: "Ethereum Main Network",
         3: "Ropsten Test Network",
@@ -39,63 +40,6 @@ function App() {
         }
     };
 
-    /*const isLogin = async (provider) => {
-        const accounts = await web3.eth.getAccounts();
-
-        if (provider) {
-            setProvider(provider);
-            setWeb3(web3);
-            setChainId(chainId);
-            setCurrentAccount(accounts[0]);
-            setIsConnected(true);
-            return true;
-        } else {
-            return false;
-        }
-
-    };*/
-
-    /*function checkAccountIsConnected() {
-        console.log("로그인 체크");
-
-        if (window.ethereum) {
-            const accounts = window.ethereum.request({
-                method: "eth_accounts",
-            });
-            console.log(window.ethereum);
-            console.log(accounts);
-
-            if (accounts.length > 0) {
-                const accBalanceEth = web3.utils.fromWei(
-                    web3.eth.getBalance(accounts[0]), "ether"
-                );
-
-                setProvider(provider);
-                setWeb3(web3);
-                setChainId(chainId);
-                setCurrentAccount(accounts[0]);
-                setIsConnected(true);
-                setBalance(Number(accBalanceEth).toFixed(10));
-            }
-        }
-    }*/
-
-    async function checkIfAccountsIsConnected({setCurrentAccount}) {
-        if (window.ethereum) {
-            const accounts = await window.ethereum.request({
-                method: "eth_accounts",
-            });
-            console.log(accounts);
-
-            if (accounts.length > 0) {      // 계정이 연결되었으면
-                const account = accounts[0];
-                // ethereum의 메소드를 통해 받아온 accounts의 값 중 계정정보가 들어있는 배열의 0번째 인덱스에 존재하는 값을 사용
-                setCurrentAccount(account);
-                return;
-            }
-
-        }
-    }
 
     useEffect(() => {
 
@@ -105,9 +49,11 @@ function App() {
                 await web3.eth.getBalance(accounts[0]), "ether"
             );
             if (accounts.length === 0) {
-                onLogout();
+                // onLogout();
+                await logout();
             } else if (accounts[0] !== currentAccount) {
-                setCurrentAccount(accounts[0]);
+                const web3Accounts = await web3.eth.getAccounts();
+                setCurrentAccount(web3Accounts);
                 setBalance(Number(accBalanceEth).toFixed(10));
             }
         };
@@ -120,53 +66,90 @@ function App() {
             // window.location.reload();
         };
 
+        /*const handleNewAccounts = async (accounts) => {
+            const web3Accounts = await web3.eth.getAccounts();
+            setCurrentAccount(web3Accounts);
+        };*/
+
 
         if (isConnected) {
             // provider.on("isConnected", onLogin);
             provider.on("accountsChanged", handleAccountsChanged);
             provider.on("chainChanged", handleChainChanged);
-        } else {
-            const isLogin =  checkIfAccountsIsConnected(setCurrentAccount);
-            console.log(isLogin);
-            if (isLogin !== null) {
-                setIsConnected(true);
-            }
-
+            // provider.on('accountsChanged', handleNewAccounts)
         }
     }, [isConnected]);
 
-    const onLogout = () => {
+/*    const onLogout = () => {
         setIsConnected(false);
         setCurrentAccount(null);
-    };
+    };*/
 
     const getCurrentNetwork = (chainId) => {
         return NETWORKS[chainId];
+    };
+
+    const logout = async () => {
+        /*provider.on("disconnect", (code, reason) => {
+            console.log(code, reason);
+        });*/
+/*        const permissions = await window.ethereum.request({
+            method: 'wallet_requestPermissions',
+            params: [{
+                eth_accounts: {},
+            }]
+        });*/
+
+        // ethereum.on('disconnect', handler: (error: ProviderRpcError) => void);
+        setIsConnected(false);
+        setCurrentAccount(null);
+        setBalance(0);
+        setProvider(null);
+        setChainId(null);
+        setWeb3(null);
+    };
+
+    const changeWallet = async () => {
+        provider.request({
+            method: 'wallet_requestPermissions',
+            params: [
+                {
+                    'eth_accounts': {
+                        requiredMethods: ['signTypedData_v4']
+                    }
+                }
+            ]
+        })
+            .then((permissions) => {
+                console.log(permissions);
+            })
+            .catch((error) => {
+                console.error(error);
+            });
     };
 
 
     return (
         <div>
             <header className={"main-header"}>
-                <h1>React &amp; Web3</h1>
+                <h1>AIxCON</h1>
                 <nav className={"nav"}>
                     <ul>
                         <li>
                             {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                            <a>{currentAccount}</a>
+                            <a onClick={changeWallet}>{currentAccount}</a>
                         </li>
                     </ul>
                 </nav>
             </header>
             <main>
-                {/*{!isLogin && <div>로그인 X</div>}*/}
-                {/*{isLogin && <div>로그인 O</div>}*/}
-                {!isConnected && <Login onLogin={onLogin} onLogout={onLogout}/>}
+                {!isConnected && <Login onLogin={onLogin}/>}
                 {isConnected &&
                     <Home
                         currentAccount={currentAccount}
                         currentNetwork={getCurrentNetwork(chainId)}
                         balance={balance}
+                        clickLogoutBtn={logout}
                     />
                 }
             </main>
