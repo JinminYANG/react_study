@@ -37,6 +37,8 @@ const Login = (props) => {
         } else if (window.web3) {
             provider = window.web3.currentProvider;
             // setIsMetaMaskConnected(true);
+        } else if (isMobileDevice()) {
+            connectDeepLink();
         } else {
             console.warn("No Ethereum browser detected! Check out MetaMask");
         }
