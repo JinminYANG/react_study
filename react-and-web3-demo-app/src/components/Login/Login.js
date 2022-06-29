@@ -20,8 +20,6 @@ const Login = (props) => {
         if (provider) {
             if (provider !== window.ethereum) {
                 console.error("Not window.ethereum provider. Do you have multiple wallets installed?");
-            } else if(isMobileDevice()){
-                alert("Mobile!");
             }
             setIsMetaMaskInstalled(true);
         }
@@ -56,6 +54,9 @@ const Login = (props) => {
         props.onLogin(provider);
     };
 
+    const dappUrl = "18.207.114.82"; // TODO enter your dapp URL. For example: https://uniswap.exchange. (don't enter the "https://")
+    const metamaskAppDeepLink = "https://metamask.app.link/dapp/" + dappUrl;
+
     return (
         <Card className={classes.login}>
             {isMetaMaskInstalled &&
@@ -66,6 +67,11 @@ const Login = (props) => {
             {!isMetaMaskInstalled &&
                 <p>
                     <a href={"https://metamask.io/download/"}>Install MetaMask</a>
+                </p>
+            }
+            {!isMetaMaskInstalled && isMobileDevice() &&
+                <p>
+                    <a href={metamaskAppDeepLink}>Mobile to Metamask install</a>
                 </p>
             }
         </Card>
