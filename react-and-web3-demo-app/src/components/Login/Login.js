@@ -6,7 +6,7 @@ const Login = (props) => {
 
     const [isConnecting, setIsConnecting] = useState(false);
     const [provider, setProvider] = useState(window.ethereum);
-    const [isMetaMaskInstalled, setIsMetaMaskInstalled] = useState(false);
+    // const [isMetaMaskInstalled, setIsMetaMaskInstalled] = useState(false);
     // const [isMetaMaskConnected, setIsMetaMaskConnected] = useState(false);
 
     const isMobileDevice = () => {
@@ -22,7 +22,7 @@ const Login = (props) => {
             if (provider !== window.ethereum) {
                 console.error("Not window.ethereum provider. Do you have multiple wallets installed?");
             }
-            setIsMetaMaskInstalled(true);
+            // setIsMetaMaskInstalled(true);
         }
     }, [provider]);
 
@@ -37,9 +37,9 @@ const Login = (props) => {
         } else if (window.web3) {
             provider = window.web3.currentProvider;
             // setIsMetaMaskConnected(true);
-        } else if (isMobileDevice()) {
+        } /*else if (isMobileDevice()) {
             connectDeepLink();
-        } else {
+        } */else {
             console.warn("No Ethereum browser detected! Check out MetaMask");
         }
 
@@ -70,11 +70,11 @@ const Login = (props) => {
 
     return (
         <Card className={classes.login}>
-            {isMetaMaskInstalled &&
+            {/*{isMetaMaskInstalled &&*/}
                 <button onClick={onLoginHandler} className={classes.button} type={"button"}>
                     {!isConnecting && "Connect"}
                     {isConnecting && "Loading..."}
-                </button>}
+                </button>
             {/*
             {!isMetaMaskInstalled &&
                 <p>
