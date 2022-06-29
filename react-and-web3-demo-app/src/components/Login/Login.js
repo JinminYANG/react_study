@@ -34,8 +34,11 @@ const Login = (props) => {
         } else if (window.web3) {
             provider = window.web3.currentProvider;
         } else if(isMobileDevice()){
+            /*
             const dappUrl = "18.207.114.82"; // TODO enter your dapp URL. For example: https://uniswap.exchange. (don't enter the "https://")
             const metamaskAppDeepLink = "https://metamask.app.link/dapp/" + dappUrl;
+            */
+
             alert("Mobile!!");
         }
         else {
@@ -54,8 +57,14 @@ const Login = (props) => {
         props.onLogin(provider);
     };
 
-    const dappUrl = "18.207.114.82"; // TODO enter your dapp URL. For example: https://uniswap.exchange. (don't enter the "https://")
-    const metamaskAppDeepLink = "https://metamask.app.link/dapp/" + dappUrl;
+    const installMetaMask = () => {
+        const dappUrl = "18.207.114.82"; // TODO enter your dapp URL. For example: https://uniswap.exchange. (don't enter the "https://")
+        const metamaskAppDeepLink = "https://metamask.app.link/dapp/" + dappUrl;
+
+        return window.open(metamaskAppDeepLink);
+    }
+
+
 
     return (
         <Card className={classes.login}>
@@ -64,15 +73,16 @@ const Login = (props) => {
                     {!isConnecting && "Connect"}
                     {isConnecting && "Loading..."}
                 </button>}
+            {/*
             {!isMetaMaskInstalled &&
                 <p>
                     <a href={"https://metamask.io/download/"}>Install MetaMask</a>
                 </p>
-            }
-            {!isMetaMaskInstalled && isMobileDevice() &&
-                <p>
-                    <a href={metamaskAppDeepLink}>Mobile to Metamask install</a>
-                </p>
+            }*/}
+            {!isMetaMaskInstalled &&
+                <button onClick={installMetaMask} className={classes.button} type={"button"}>
+                    Install
+                </button>
             }
         </Card>
     )
