@@ -7,6 +7,7 @@ const Login = (props) => {
     const [isConnecting, setIsConnecting] = useState(false);
     const [provider, setProvider] = useState(window.ethereum);
     const [isMetaMaskInstalled, setIsMetaMaskInstalled] = useState(false);
+    // const [isMetaMaskConnected, setIsMetaMaskConnected] = useState(false);
 
     const isMobileDevice = () => {
         return 'ontouchstart' in window || 'onmsgesturechange' in window;
@@ -26,22 +27,17 @@ const Login = (props) => {
     }, [provider]);
 
 
+
     const detectProvider = () => {
         let provider;
         if (window.ethereum) {
             provider = window.ethereum;
             // console.log(provider);
+            // setIsMetaMaskConnected(true);
         } else if (window.web3) {
             provider = window.web3.currentProvider;
-        } else if(isMobileDevice()){
-            /*
-            const dappUrl = "18.207.114.82"; // TODO enter your dapp URL. For example: https://uniswap.exchange. (don't enter the "https://")
-            const metamaskAppDeepLink = "https://metamask.app.link/dapp/" + dappUrl;
-            */
-
-            alert("Mobile!!");
-        }
-        else {
+            // setIsMetaMaskConnected(true);
+        } else {
             console.warn("No Ethereum browser detected! Check out MetaMask");
         }
 
@@ -49,21 +45,25 @@ const Login = (props) => {
     };
 
     const onLoginHandler = async () => {
-        setIsConnecting(true);
-        await provider.request({
-            method: "eth_requestAccounts",
-        });
-        setIsConnecting(false);
-        props.onLogin(provider);
+        if(isMobileDevice()){
+            connectDeepLink();
+        } else {
+            setIsConnecting(true);
+            await provider.request({
+                method: "eth_requestAccounts",
+            });
+            setIsConnecting(false);
+            props.onLogin(provider);
+        }
+
     };
 
-    const installMetaMask = () => {
+    const connectDeepLink = () => {
         const dappUrl = "18.207.114.82"; // TODO enter your dapp URL. For example: https://uniswap.exchange. (don't enter the "https://")
         const metamaskAppDeepLink = "https://metamask.app.link/dapp/" + dappUrl;
 
         return window.open(metamaskAppDeepLink);
     }
-
 
 
     return (
@@ -79,11 +79,11 @@ const Login = (props) => {
                     <a href={"https://metamask.io/download/"}>Install MetaMask</a>
                 </p>
             }*/}
-            {!isMetaMaskInstalled &&
-                <button onClick={installMetaMask} className={classes.button} type={"button"}>
+            {/*{!isMetaMaskInstalled &&
+                <button onClick={connectDeepLink} className={classes.button} type={"button"}>
                     Install
                 </button>
-            }
+            }*/}
         </Card>
     )
 }
