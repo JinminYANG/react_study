@@ -20,6 +20,8 @@ const Login = (props) => {
         if (provider) {
             if (provider !== window.ethereum) {
                 console.error("Not window.ethereum provider. Do you have multiple wallets installed?");
+            } else if(isMobileDevice()){
+                alert("Mobile!");
             }
             setIsMetaMaskInstalled(true);
         }
@@ -36,6 +38,7 @@ const Login = (props) => {
         } else if(isMobileDevice()){
             const dappUrl = "18.207.114.82"; // TODO enter your dapp URL. For example: https://uniswap.exchange. (don't enter the "https://")
             const metamaskAppDeepLink = "https://metamask.app.link/dapp/" + dappUrl;
+            alert("Mobile!!");
         }
         else {
             console.warn("No Ethereum browser detected! Check out MetaMask");
