@@ -61,7 +61,7 @@ const Login = (props) => {
     };
 
     const connectDeepLink = () => {
-        const dappUrl = "18.207.114.82"; // TODO enter your dapp URL. For example: https://uniswap.exchange. (don't enter the "https://")
+        const dappUrl = "3.35.235.179"; // TODO enter your dapp URL. For example: https://uniswap.exchange. (don't enter the "https://")
         const metamaskAppDeepLink = "https://metamask.app.link/dapp/" + dappUrl;
 
         return window.open(metamaskAppDeepLink);
