@@ -29,7 +29,7 @@ app.use(
         resave: false,
         saveUninitialized: false,
         cookie: {
-            expires: 60 * 60 * 24,
+            expires: 60 * 60 * 24 * 60,
         },
     })
 );
@@ -47,8 +47,8 @@ db.query('select * from users', function (error, results, fields) {
     if (error){
         console.log(error);
     }
-    console.log(results);
 });
+
 
 app.post("/register", (req, res) => {
     const username = req.body.username;
@@ -62,11 +62,17 @@ app.post("/register", (req, res) => {
         db.query(
             "INSERT INTO users (username, password) VALUES (?,?)",
             [username, hash],
-            (err, result) => {
-                console.log(err);
+            function (err, rows, fields) {
+                if (err) {
+                    console.log("DB저장 실패");
+                    return [res.status(400).send()];
+                } else {
+                    console.log("DB저장 성공");
+                    return res.status(200).send();
+                }
             }
-        );
-    })
+        )
+    });
 
 });
 
@@ -91,9 +97,9 @@ app.post("/login", (req, res) => {
             }
 
             if (result.length > 0) {
-                // res.send(result);
                 bcrypt.compare(password, result[0].password, (error, response) => {
                     if (response) {
+                        console.log(response);
                         req.session.user = result;
                         console.log(req.session.user);
                         res.send(result);

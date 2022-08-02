@@ -8,8 +8,8 @@ function App() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/registration" exact element={<Registration/>}/>
-                <Route path="/" exact element={<Main/>}/>
+                <Route path="/" exact element={<Registration/>}/>
+                <Route path="/main" exact element={<Main/>}/>
             </Routes>
         </BrowserRouter>
     );
