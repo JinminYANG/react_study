@@ -56,7 +56,7 @@ const DashboardPage = () => {
                 </div>
                 <div className={"flex-item"}>
                     <h2 className={"flex-item-title"}>Column-two</h2>
-                    <MultilevelTreeMap chartID={"Multi-one"}/>
+                    {/*<MultilevelTreeMap chartID={"Multi-one"}/>*/}
                 </div>
 
 {/*                <Pie chartID="pie-two"/>

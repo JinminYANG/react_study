@@ -34,6 +34,7 @@ const Sidebar = () => {
    * https://w3collective.com/react-sidebar-navigation-component/
    * sidebar flip control testing...
    */
+
    return (
       <nav className={sidebar ? "sidebar active" : "sidebar"}>
          <button className="hamburger" type="button" onClick={showSidebar}>
@@ -41,8 +42,9 @@ const Sidebar = () => {
          </button>
          <ul onClick={showSidebar}>
             <li><Link to="/">Home</Link></li>
-            <li><Link to="/services">Services</Link></li>
-            <li><Link to="/contact">Contact</Link></li>
+            <li><Link to="/mylist">List</Link></li>
+            <li><Link to="/favorite">favorite</Link></li>
+            <li><Link to="/setting">Setting</Link></li>
          </ul>
       </nav>
 

@@ -29,7 +29,7 @@ function App() {
         );
 
         if (accounts.length === 0) {
-            console.log("Please connect to MataMask!");
+            alert("Please connect to MataMask!");
         } else if (accounts[0] !== currentAccount) {
             setProvider(provider);
             setWeb3(web3);

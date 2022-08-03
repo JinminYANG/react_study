@@ -5,28 +5,6 @@ import MetaMaskLogo from "./favicon.svg";
 import aixconlogo from "./img/symbol.png";
 
 function App() {
-    // const [changeWallet, setChangeWallet] = useState("");
-
-    useEffect(() => {
-        if (window.ethereum) {
-            console.log(window.ethereum);
-
-            window.ethereum.on('chainChanged', () => {
-                console.log("dzdzdzdz");
-                window.location.reload();
-            });
-
-            window.ethereum.on('handleChainChanged', () => {
-                console.log("dzdzdzdzzzzzz");
-                window.location.reload();
-            });
-
-            window.ethereum.on('계정 변경', () => {
-                window.location.reload();
-            });
-        }
-    }, [window.ethereum]);
-
     return (
         <main>
             <div className="logoContainer">

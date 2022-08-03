@@ -4,13 +4,12 @@
     background-size: 100% 100%;
     border: 1px solid #dbdbdb;
     border-radius: 4px;
-    border-width: 1px;
     padding: 13px;
     cursor: pointer;
     font-weight: 600;
     font-size: 1.2em;
     display: block;
-    margin: 0 auto;
+    margin: 2rem auto;
 }
 
 .button:hover {

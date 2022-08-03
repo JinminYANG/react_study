@@ -17,6 +17,7 @@ function App() {
                 const accounts = await window.ethereum.request({
                     method: "eth_requestAccounts",
                 });
+                console.log(accounts);
                 setWalletAddress(accounts[0]);
                 alert("계정이 연결되었습니다.");
             } catch (error) {

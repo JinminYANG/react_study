@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom';
 const MainPage = () => {
    return (
       <>
-         <Content/>
+
+{/*         <Content/>
          <h1>메인페이지 입니다.</h1>
 
          <ul>
@@ -14,7 +15,7 @@ const MainPage = () => {
             <Link to={"/dashboard/2"}>
                <li>2번</li>
             </Link>
-         </ul>
+         </ul>*/}
       </>
    )
 };

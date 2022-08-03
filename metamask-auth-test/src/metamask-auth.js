@@ -1,18 +1,6 @@
 import React, {useEffect, useState} from "react";
 import styles from "./metamask-auth.module.css";
 
-async function logout({setUserAddress}){
-    if (window.ethereum) {
-        const accounts = await window.ethereum.request({
-            method: "eth_disconnect",
-        });
-
-        setUserAddress(null);
-    }
-
-}
-
-
 // 먼저 사용자가 모바일 장치에 있는지 감지하는 방법이 필요합니다.
 function isMobileDevice() {
     return 'ontouchstart' in window || 'onmsgesturechange' in window;
@@ -40,6 +28,31 @@ async function connect(onConnected) {
     console.log(window.ethereum);
 
     onConnected(accounts[0]);
+}
+
+// 모바일 브라우저 확장이 없다는 사실을 우회하는 방법은 deep link
+// 딥 링크를 사용하여 사용자의 모바일 장치에서 MetaMask 앱을 열 수 있습니다
+// (사용자가 MetaMask를 설치하지 않은 경우 AppStore에 설치하기 위한 링크가 열립니다)
+function Connect({setUserAddress}) {
+    if (isMobileDevice()) {
+        const dappUrl = "18.207.114.82"; // TODO enter your dapp URL. For example: https://uniswap.exchange. (don't enter the "https://")
+        const metamaskAppDeepLink = "https://metamask.app.link/dapp/" + dappUrl;
+        return (
+            <>
+                <a href={metamaskAppDeepLink}>
+                    <button className={styles.button}>
+                        Connect to MetaMask
+                    </button>
+                </a>
+            </>
+        );
+    }
+
+    return (
+        <button className={styles.button} onClick={() => connect(setUserAddress)}>
+            Connect to MetaMask
+        </button>
+    );
 }
 
 
@@ -72,6 +85,7 @@ async function checkIfAccountsIsConnected(onConnected) {
 export default function MetaMaskAuth({onAddressChanged}) {
     const [userAddress, setUserAddress] = useState("");
     // 사용자의 연결된 주소를 저장 하는 상태 변수를 사용
+    console.log(userAddress);
 
     useEffect(() => {
         checkIfAccountsIsConnected(setUserAddress); // 페이지가 처음 로드될 때 확인
@@ -91,43 +105,18 @@ export default function MetaMaskAuth({onAddressChanged}) {
         <div className={styles.addressText}>
             <span>Connected with</span>
             <Address userAddress={userAddress}/>
-            <button className={styles.button} onClick={() => console.log("change?")}>change wallet</button>
-            <button className={styles.button} onClick={() => logout(setUserAddress)}>Logout</button>
+            {/*<button className={styles.button} onClick={() => console.log("change?")}>change wallet</button>*/}
+            {/*<button className={styles.button} onClick={() => logout(setUserAddress)}>Logout</button>*/}
         </div>
     ) : (
         <div>
             <Connect setUserAddress={setUserAddress}/>
         </div>
     );
-    // userAddress가 비어 있으면 "MetaMask에 연결" 단추를 표시하고, 
+    // userAddress가 비어 있으면 "MetaMask에 연결" 단추를 표시하고,
     // userAddress에 값이 존재할 경우 "Connected with ~" 메시지를 표시
 }
 
-
-// 모바일 브라우저 확장이 없다는 사실을 우회하는 방법은 deep link
-// 딥 링크를 사용하여 사용자의 모바일 장치에서 MetaMask 앱을 열 수 있습니다
-// (사용자가 MetaMask를 설치하지 않은 경우 AppStore에 설치하기 위한 링크가 열립니다)
-function Connect({setUserAddress}) {
-    if (isMobileDevice()) {
-        const dappUrl = "18.207.114.82"; // TODO enter your dapp URL. For example: https://uniswap.exchange. (don't enter the "https://")
-        const metamaskAppDeepLink = "https://metamask.app.link/dapp/" + dappUrl;
-        return (
-            <>
-                <a href={metamaskAppDeepLink}>
-                    <button className={styles.button}>
-                        Connect to MetaMask
-                    </button>
-                </a>
-            </>
-        );
-    }
-
-    return (
-        <button className={styles.button} onClick={() => connect(setUserAddress)}>
-            Connect to MetaMask
-        </button>
-    );
-}
 
 
 function Address({userAddress}) {
@@ -138,3 +127,7 @@ function Address({userAddress}) {
         </>
     );
 }
+
+/*
+* ref: https://betterprogramming.pub/build-a-react-component-for-metamask-auth-10b7ecba5c3f
+*/
