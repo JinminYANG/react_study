@@ -114,6 +114,11 @@ app.post("/login", (req, res) => {
     );
 });
 
-app.listen(3001, () => {
+
+app.get('/api/host', (req, res) => {
+    res.send({ host : 'Jinmin' });
+});
+
+app.listen(4000, () => {
     console.log("running server!");
 });

@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import Axios from "axios";
 import "../App.css";
 import {useNavigate} from "react-router-dom";
+import axios from "axios";
 
 export default function Registration() {
     const [usernameReg, setUsernameReg] = useState("");
@@ -17,14 +18,21 @@ export default function Registration() {
 
     Axios.defaults.withCredentials = true;
 
+    const [host, setHost] = useState('');
+    const getHost = async () => {
+        const res = await axios.get('http://localhost:4000/api/host');
+        setHost(res.data.host);
+        // this.setState({ host : res.data.host })
+    }
+
     const register = () => {
-        Axios.post("http://localhost:3001/register", {
+        Axios.post("http://localhost:4000/register", {
             username: usernameReg,
             password: passwordReg,
         }).then((response) => {
             console.log(response);
-            if(response.status == 200){
-                setRegistrationStatus(usernameReg +'님 가입을 축하드립니다!');
+            if (response.status == 200) {
+                setRegistrationStatus(usernameReg + '님 가입을 축하드립니다!');
                 setUsernameReg("");
                 setPasswordReg("");
             }
@@ -35,7 +43,7 @@ export default function Registration() {
     };
 
     const login = () => {
-        Axios.post("http://localhost:3001/login", {
+        Axios.post("http://localhost:4000/login", {
             username: username,
             password: password,
         }).then((response) => {
@@ -44,7 +52,7 @@ export default function Registration() {
                 setLoginStatus(response.data.message);
             } else {
                 setLoginStatus(response.data[0].username);
-                if(loginStatus != null) {
+                if (loginStatus != null) {
                     return navigate("/main");
                 }
             }
@@ -52,16 +60,21 @@ export default function Registration() {
     };
 
     useEffect(() => {
-        Axios.get("http://localhost:3001/login").then((response) => {
+        Axios.get("http://localhost:4000/login").then((response) => {
             if (response.data.loggedIn == true) {
                 setLoginStatus(response.data.user[0].username);
                 return navigate("/main");
             }
         });
+
+        getHost();
+
     }, []);
 
     return (
         <div className="App">
+            <h3> Welcome to <u>{host}</u> Page! </h3>
+
             <div className="registration">
                 <h1>Registration</h1>
                 <label>Username</label>
@@ -78,7 +91,7 @@ export default function Registration() {
                         setPasswordReg(e.target.value);
                     }}
                 />
-                <button onClick={register}> Register </button>
+                <button onClick={register}> Register</button>
             </div>
 
             <h1>{registrationStatus}</h1>
@@ -99,7 +112,7 @@ export default function Registration() {
                         setPassword(e.target.value);
                     }}
                 />
-                <button onClick={login}> Login </button>
+                <button onClick={login}> Login</button>
             </div>
 
             <h1>{loginStatus}</h1>
