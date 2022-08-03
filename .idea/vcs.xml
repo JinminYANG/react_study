@@ -2,5 +2,7 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/metamask-v2" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/simple-dapp-tutorial" vcs="Git" />
   </component>
 </project>
