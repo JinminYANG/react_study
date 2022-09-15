@@ -23,10 +23,12 @@ import {
     Line
 } from "./pages";
 
+import {useStateContext} from "./contexts/ContextProvider";
+
 import './App.css';
 
 const App = () => {
-    const activeMenu = false;
+    const {activeMenu} = useStateContext();
 
     return (
         <div>
@@ -80,7 +82,7 @@ const App = () => {
                             <Route path={"/bar"} element={<Bar/>}/>
                             <Route path={"/pie"} element={<Pie/>}/>
                             <Route path={"/financial"} element={<Financial/>}/>
-                            <Route path={"/color-mapping"} element={<colorMapping/>}/>
+                            <Route path={"/color-mapping"} element={<ColorMapping/>}/>
                             <Route path={"/pyramid"} element={<Pyramid/>}/>
                             <Route path={"/stacked"} element={<Stacked/>}/>
 
