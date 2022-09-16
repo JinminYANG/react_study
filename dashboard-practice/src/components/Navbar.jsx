@@ -27,7 +27,6 @@ const NavButton = ({title, customFunc, icon, color, dotColor}) => (
             >
                 {icon}
             </span>
-
         </button>
     </TooltipComponent>
 );
