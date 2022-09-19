@@ -12,22 +12,29 @@ import {
 import {stackedCustomSeries, stackedPrimaryXAxis, stackedPrimaryYAxis} from "../../data/dummy";
 
 const Stacked = ({width, height}) => {
+/*    console.log(stackedCustomSeries);
+    stackedCustomSeries.map((item, index) => {
+        console.log(item);
+        console.log(index);
+        // console.log(item.key);
+    });*/
+
     return (
         <ChartComponent
+            id="charts"
+            primaryXAxis={stackedPrimaryXAxis}
+            primaryYAxis={stackedPrimaryYAxis}
             width={width}
             height={height}
-            id={"stack chart"}
-            // primaryXAxis={stackedPrimaryXAxis}
-            // primaryYAxis={stackedPrimaryYAxis}
             chartArea={{border: {width: 0}}}
             tooltip={{enable: true}}
+            legendSettings={{background: 'white'}}
+            // background={currentMode === 'Dark' ? '#33373E' : '#fff'}
         >
             <Inject services={[Legend, Category, StackingColumnSeries, Tooltip]}/>
             <SeriesCollectionDirective>
-                {stackedCustomSeries.map((item, index) => (
-                    <SeriesDirective key={index} {...item} />
-                    // 여기부터 다시 시작 (뭔가 꼬임)
-                ))}
+                {/* eslint-disable-next-line react/jsx-props-no-spreading */}
+                {stackedCustomSeries.map((item, index) => <SeriesDirective key={index} {...item} />)}
             </SeriesCollectionDirective>
         </ChartComponent>
     );
