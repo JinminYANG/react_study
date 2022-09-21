@@ -1,0 +1,62 @@
+.header {
+  background-color: cornflowerblue;
+  height: 4vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .logo {
+    font-size: 1.5rem;
+    margin: 0.1rem 3rem 0.1rem 0.5rem;
+  }
+
+
+  .nav {
+    display: flex;
+    flex-grow: 1;
+
+    .nav-list {
+      display: flex;
+      justify-content: space-around;
+
+      .nav-link {
+        color: gray;
+        margin: 0 0.5rem 0 0.5rem;
+        padding: 0 10px 0 10px;
+
+        &.active {
+          color: white;
+          background-color: black;
+        }
+      }
+    }
+  }
+
+  .top-menu {
+    display: flex;
+
+
+    .top-menu-list {
+      display: flex;
+
+      .top-menu-item {
+        margin-right: 1rem;
+        cursor: pointer;
+
+        .icon-user {
+          margin-right: 0.3rem;
+        }
+
+        .icon-rotate {
+
+        }
+
+      }
+
+
+    }
+
+
+  }
+}
+
