@@ -12,6 +12,8 @@ import Traffic from './pages/Traffic';
 import Roaming from './pages/Roaming';
 import User from './pages/User';
 import System from './pages/System';
+import Container from 'react-bootstrap/Container';
+import HeaderV2 from './components/HeaderV2';
 
 const App = () => {
   const { activeMenu } = useStateContext();
@@ -19,7 +21,7 @@ const App = () => {
   return (
     <>
       <BrowserRouter>
-        <div className={'page-wrapper'}>
+        <Container fluid>
           <Header />
           <div>
             <Routes>
@@ -33,7 +35,7 @@ const App = () => {
               <Route path={'/system'} element={<System />} />
             </Routes>
           </div>
-        </div>
+        </Container>
       </BrowserRouter>
     </>
   );
