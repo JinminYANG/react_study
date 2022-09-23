@@ -1,7 +1,12 @@
 import React from 'react';
+import MainHeader from '../components/MainHeader';
 
 const Fault = () => {
-  return <div>Fault</div>;
+  return (
+    <>
+      <MainHeader title={'Fault'} />
+    </>
+  );
 };
 
 export default Fault;

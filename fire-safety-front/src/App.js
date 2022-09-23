@@ -21,7 +21,7 @@ const App = () => {
   return (
     <>
       <BrowserRouter>
-        <Container fluid>
+        <Container fluid className={'p-0'}>
           <Header />
           <div>
             <Routes>

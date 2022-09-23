@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/components/main-title.scss';
+// import '../styles/components/main-title.scss';
 
 const Title = props => {
   return <h2 className={'main-title'}>{props.title}</h2>;
