@@ -7,7 +7,7 @@ import BreadcrumbExample from './Breadcrumb';
 
 const MainHeader = props => {
   return (
-    <Container fluid className={'m-2'}>
+    <Container fluid className={''}>
       <Row>
         <Col>
           <Title title={props.title} />

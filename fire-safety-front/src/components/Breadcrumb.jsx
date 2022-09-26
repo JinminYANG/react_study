@@ -7,7 +7,7 @@ import { Breadcrumb, Nav } from 'react-bootstrap';
 const BreadcrumbExample = props => {
   return (
     <>
-      <Nav className="breadcrumb justify-content-end" activeKey="/home">
+      <Nav className="breadcrumb justify-content-end m-0" activeKey="/home">
         <Nav.Item className={'breadcrumb-item'}>
           <Nav.Link href="/">
             <FontAwesomeIcon

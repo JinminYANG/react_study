@@ -1,13 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Loading from '../../Loading';
 
 const NGINXLogLines = () => {
+  const [isLoading, setIsLoading] = useState(true);
+
   return (
-    <iframe
-      src="http://43.201.47.127:3000/d-solo/Nz6kKgtGj/grafana-loki-dashboard-for-nginx-service-mesh?orgId=1&from=1663834734117&to=1663921134117&refresh=15m&panelId=31"
-      width="450"
-      height="200"
-      frameBorder="0"
-    ></iframe>
+    <>
+      {isLoading ? <Loading /> : <></>}
+      <iframe
+        src="http://43.201.47.127:3000/d-solo/Nz6kKgtGj/grafana-loki-dashboard-for-nginx-service-mesh?orgId=1&from=1663834734117&to=1663921134117&refresh=15m&panelId=31"
+        width="450"
+        height="200"
+        frameBorder="0"
+        onLoad={() => setIsLoading(false)}
+      ></iframe>
+    </>
   );
 };
 

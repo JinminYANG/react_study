@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Aside from '../components/Aside';
 import MainHeader from '../components/MainHeader';
 import TotalRequests from '../components/Grafana/KPIs/TotalRequests';
@@ -17,36 +17,57 @@ import HTTPStatusCodesOverTime from '../components/Grafana/RequestStatisticsOver
 import BytesSent from '../components/Grafana/RequestStatisticsOverTime/BytesSent';
 import Container from 'react-bootstrap/Container';
 import { Col, Row } from 'react-bootstrap';
+import Loading from '../components/Loading';
 
 const Dashboard = () => {
+  const [isLoading, setIsLoading] = useState(true);
+
   return (
-    <Container fluid className={''}>
-      <MainHeader title={'Dashboard'} />
+    <>
+      <Row className={'main-content'} gap={1}>
+        <Row>
+          <Col>
+            <MainHeader title={'Dashboard'} />
+          </Col>
+        </Row>
+        <Row>
+          <Col
+            xxl={2}
+            xl={3}
+            lg={3}
+            md={3}
+            sm={3}
+            xs={3}
+            className={'aside-container'}
+          >
+            <Aside />
+          </Col>
+          <Col>
+            {/* Dashboard Content*/}
 
-      <Row>
-        <Col xxl={2} xl={3} lg={3} md={3} sm={3} xs={3}>
-          <Aside />
-        </Col>
-        <Col>
-          {/* Dashboard Content*/}
-
-          <TotalRequests />
-          <RealtimeVisitors />
-          <RequestsPerStatusCode />
-          <NGINXLogsInBytes />
-          <NGINXLogLines />
-          <TotalBytesSent />
-          <PercentOf5xxRequests />
-          <PercentOfRequestsByGooglebot />
-          <RequestsPerCountry />
-          <TopCountries />
-          <RecentRequests />
-          <PercentileOfRequestTime />
-          <HTTPStatusCodesOverTime />
-          <BytesSent />
-        </Col>
+            {/*{isLoading ? (
+              <Loading />
+            ) : (
+              <TotalRequests onLoad={() => setIsLoading(false)} />
+            )}*/}
+            <TotalRequests />
+            <RealtimeVisitors />
+            <RequestsPerStatusCode />
+            <NGINXLogsInBytes />
+            <NGINXLogLines />
+            <TotalBytesSent />
+            <PercentOf5xxRequests />
+            <PercentOfRequestsByGooglebot />
+            <RequestsPerCountry />
+            <TopCountries />
+            <RecentRequests />
+            <PercentileOfRequestTime />
+            <HTTPStatusCodesOverTime />
+            <BytesSent />
+          </Col>
+        </Row>
       </Row>
-    </Container>
+    </>
   );
 };
 

@@ -21,9 +21,9 @@ const App = () => {
   return (
     <>
       <BrowserRouter>
-        <Container fluid className={'p-0'}>
+        <Container fluid className={'p-0 wrapper'}>
           <Header />
-          <div>
+          <Container fluid className={'main'}>
             <Routes>
               <Route path={'/'} element={<Dashboard />} />
               <Route path={'/dashboard'} element={<Dashboard />} />
@@ -34,7 +34,7 @@ const App = () => {
               <Route path={'/user'} element={<User />} />
               <Route path={'/system'} element={<System />} />
             </Routes>
-          </div>
+          </Container>
         </Container>
       </BrowserRouter>
     </>
