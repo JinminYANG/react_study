@@ -24,7 +24,7 @@ const Dashboard = () => {
 
   return (
     <>
-      <Row className={'main-content'} gap={1}>
+      <Row className={'main-content'}>
         <Row>
           <Col>
             <MainHeader title={'Dashboard'} />
